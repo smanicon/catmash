@@ -19,3 +19,13 @@ Pendant la review de votre code, une attention toute particulière sera portée 
 du code (structure, organisation, noms des variables et méthodes, etc...), la fréquence et
 description des commits, ainsi qu’à l’expérience globale que propose l’application.
 Il n’est pas grave que le projet ne soit pas entièrement terminé.
+
+## 2.Compiler
+
+### 2.1.Gradle
+
+Il faut avoir préalablement avoir installé la jdk 8.
+Lancer la commande suivante :
+```
+$ ./gradlew build check jar
+```

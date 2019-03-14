@@ -30,6 +30,22 @@ Lancer la commande suivante :
 $ ./gradlew build check jar
 ```
 
+### 2.2.Conteneur de build
+
+Le conteneur de build permet de ne pas installer tous les outils de build. Il
+faut disposer de docker et lancer les commandes suivantes :
+```
+$ docker build -t catmash-builder -f Dockerfile.build .
+$ docker run --name catmash-builder-run -ti catmash-builder
+$ docker cp catmash-builder-run:/home/gradle/project/build/lib build/
+```
+
+Une fois compilé, nettoyer docker :
+```
+$ docker rm catmash-builder-run
+$ docker rmi catmash-builder
+```
+
 ## 3.Exécuter
 
 ### 3.1.Gradle

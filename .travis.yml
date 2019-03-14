@@ -1,0 +1,10 @@
+langage: java
+
+service:
+    - docker
+
+before_install:
+    docker build -t catmash-build -f Dockerfile.build .
+
+script:
+    docker run -ti --name catmash-run-build catmash-build

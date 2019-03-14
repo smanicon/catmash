@@ -1,0 +1,7 @@
+FROM gradle:jdk8
+
+COPY --chown=gradle . /home/gradle/project
+WORKDIR /home/gradle/project
+
+ENTRYPOINT ["gradle", "--console", "plain"]
+CMD ["build", "check", "jar"]

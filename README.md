@@ -29,3 +29,20 @@ Lancer la commande suivante :
 ```
 $ ./gradlew build check jar
 ```
+
+## 3.Exécuter
+
+### 3.1.Gradle
+
+Le projet peut être lancé par gradle via la command suivante :
+```
+$ ./gradlew bootRun
+```
+
+### 3.2.Java
+
+La compilation fabrique un fat jar exécutable.
+PPour lancer le projet, il faut le lancer avec la commande suivante :
+```
+$ java -jar catmash.jar
+```

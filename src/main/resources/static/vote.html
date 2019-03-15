@@ -1,0 +1,91 @@
+<html>
+<head>
+
+    <style>
+    /*
+        Palette de couleurs :
+            - #90afc5
+            - #336b87
+            - #2a3132
+            - #763626
+    */
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #336b87;
+            text-align: center;
+            padding-top: 10px;
+            padding-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 30px;
+            margin : 0px 0px 10px 0px;
+        }
+
+        header h2 {
+            font-size: 15px;
+            margin : 0px 0px 0px 0px;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .choose {
+            background-color: #90afc5;
+            height: 300px;
+            width: 200px;
+            display: flex;
+        }
+
+        .choose img {
+            max-height: 300px;
+            max-width: 200px;
+            margin: auto;
+        }
+
+        #between {
+            line-height: 300px;
+            margin: 0px 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script src="/jquery-3.3.1.min.js"></script>
+    <script language="JavaScript">
+        $(document).ready(function() {
+            $.getJSON("/votes/generate", function(vote) {
+               $("#cat1").attr('src', vote.firstCat.url);
+               $("#cat2").attr('src', vote.secondCat.url);
+            });
+        })
+    </script>
+</head>
+<body>
+    <header>
+        <h1>CatMash</h1>
+        <h2>Quel chat est le plus mignon ? Cliquez pour voter</h2>
+    </header>
+    <section>
+        <a href="">
+            <div class="choose">
+                <img id="cat1" src=""/>
+            </div>
+        </a>
+        <div id="between">OU</div>
+        <a href="">
+            <div class="choose">
+                <img id="cat2" src=""/>
+            </div>
+        </a>
+    </section>
+</body>
+</html>

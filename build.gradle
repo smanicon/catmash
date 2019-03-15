@@ -6,6 +6,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+apply from: "$rootDir/gradle/integration-test.gradle"
 
 repositories {
     mavenCentral()
@@ -17,6 +18,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
     testImplementation 'junit:junit:4.12'
+
+    integrationTestImplementation 'com.tngtech.jgiven:jgiven-spring:0.17.0'
+    integrationTestImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 mainClassName = 'org.catmash.Application'

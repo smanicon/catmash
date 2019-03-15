@@ -1,0 +1,59 @@
+openapi: 3.0.0
+info:
+  title: Catmash
+  description: |
+    Catmash est un programme de vote, permettant d'élir le chat le
+    plus beau
+  license:
+    name: AGPL 3.0
+    url: 'https://www.gnu.org/licenses/agpl.txt'
+  version: 1.0.0
+paths:
+  /votes/generate:
+    get:
+      summary: Permet de générer une demande de vote
+      description: |
+        Pour pouvoir donner un vote, il faut d'abord demander au serveur de
+        générer une combinaison. Celui-ci retourne 2 chats, il sera alors
+        possible de voter pour l'un des deux.
+      tags:
+        - votes
+      responses:
+        '200':
+          description: Retourne les id et url des deux chats
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GenerateVote"
+              example:
+                firsCat:
+                  id: "MTgwODA3MA"
+                  url: "http://24.media.tumblr.com/tumblr_m82woaL5AD1rro1o5o1_1280.jpg"
+                secondCat:
+                  id: "tt"
+                  url: "http://24.media.tumblr.com/tumblr_m29a9d62C81r2rj8po1_500.jpg"
+components:
+  schemas:
+    GenerateVote:
+      type: object
+      properties:
+        firstCat:
+          $ref: "#/components/schemas/CatUrl"
+        secondeCat:
+          $ref: "#/components/schemas/CatUrl"
+    CatUrl:
+      type: object
+      required:
+        - id
+        - url
+      properties:
+        id:
+          type: string
+          description: ID unique du chat
+        url:
+          type: string
+          description: Url de l´image
+
+tags:
+  - name: votes
+    description: Permet de voter pour un chat

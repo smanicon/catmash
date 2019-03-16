@@ -1,5 +1,5 @@
 package org.catmash.domain.vote;
 
-interface Randomize {
+public interface Randomize {
     int rand(int i);
 }

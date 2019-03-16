@@ -3,7 +3,7 @@ package org.catmash.domain.vote;
 import lombok.Value;
 
 @Value
-class CatUrl {
+public class CatUrl {
     private String id;
     private String url;
 }

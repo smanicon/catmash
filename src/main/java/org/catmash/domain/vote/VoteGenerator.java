@@ -2,7 +2,7 @@ package org.catmash.domain.vote;
 
 import java.util.List;
 
-class VoteGenerator {
+public class VoteGenerator {
     private List<CatUrl> catUrls;
     private Randomize randomize;
 

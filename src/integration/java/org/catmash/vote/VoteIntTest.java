@@ -24,4 +24,12 @@ public class VoteIntTest
         then().the_server_should_return_status_ok()
                 .and().return_the_generated_vote("json/expected/votes/cat_1_and_cat_2.json");
     }
+
+    @Test
+    public void should_not_generate_vote_if_not_enough_cat_url() throws Exception {
+        given().an_user_want_to_vote()
+                .and().the_system_has_loaded_the_file("json/parameter/no_cat.json");
+        when().he_is_asking_for_a_vote();
+        then().the_server_should_return_status_error_500();
+    }
 }

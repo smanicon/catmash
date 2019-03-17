@@ -8,8 +8,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class VoteGeneratorTest {
@@ -19,7 +18,7 @@ public class VoteGeneratorTest {
     private static final CatUrl CAT_URL_3 = new CatUrl("id3", "url3");
 
     @Test
-    public void should_return_all_the_two_cats_if_input_has_two_cats() {
+    public void should_return_all_the_two_cats_if_input_has_two_cats() throws NotGeneratedVoteException {
         List<CatUrl> catUrls = asList(
                 CAT_URL_1,
                 CAT_URL_2
@@ -42,7 +41,7 @@ public class VoteGeneratorTest {
 
         VoteGenerator voteGenerator = new VoteGenerator(catUrls, (i) -> 0);
 
-        assertThatIllegalStateException()
+        assertThatExceptionOfType(NotGeneratedVoteException.class)
                 .isThrownBy(voteGenerator::generate)
                 .withMessage("Cannot generate votes because there are not enough cat");
     }
@@ -53,13 +52,13 @@ public class VoteGeneratorTest {
 
         VoteGenerator voteGenerator = new VoteGenerator(catUrls, (i) -> 0);
 
-        assertThatIllegalStateException()
+        assertThatExceptionOfType(NotGeneratedVoteException.class)
                 .isThrownBy(voteGenerator::generate)
                 .withMessage("Cannot generate votes because there are not enough cat");
     }
 
     @Test
-    public void should_pick_two_cats_from_random_input() {
+    public void should_pick_two_cats_from_random_input() throws NotGeneratedVoteException {
         List<CatUrl> catUrls = asList(
                 CAT_URL_1,
                 CAT_URL_2,
@@ -80,7 +79,7 @@ public class VoteGeneratorTest {
     }
 
     @Test
-    public void should_not_return_the_same_cat() {
+    public void should_not_return_the_same_cat() throws NotGeneratedVoteException {
         List<CatUrl> catUrls = asList(
                 CAT_URL_1,
                 CAT_URL_2,
@@ -115,7 +114,7 @@ public class VoteGeneratorTest {
 
         VoteGenerator voteGenerator = new VoteGenerator(catUrls, r);
 
-        assertThatIllegalStateException()
+        assertThatExceptionOfType(NotGeneratedVoteException.class)
                 .isThrownBy(voteGenerator::generate)
                 .withMessage("Cannot generate votes with different cat");
 

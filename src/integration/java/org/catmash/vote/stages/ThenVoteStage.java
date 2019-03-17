@@ -29,6 +29,11 @@ public class ThenVoteStage extends Stage<ThenVoteStage> {
         return self();
     }
 
+    public ThenVoteStage the_server_should_return_status_error_500() throws Exception {
+        mvcResult.andExpect(status().is5xxServerError());
+        return self();
+    }
+
     public ThenVoteStage return_the_generated_vote(@Hidden String json) throws Exception {
         Resource resource = new ClassPathResource(json);
         File jsonFile = resource.getFile();

@@ -11,9 +11,9 @@ public class VoteGenerator {
         this.randomize = randomize;
     }
 
-    public CatMash generate() {
+    public CatMash generate() throws NotGeneratedVoteException {
         if(hasNotEnoughElement(catUrls.size())) {
-            throw new IllegalStateException("Cannot generate votes because there are not enough cat");
+            throw new NotGeneratedVoteException("Cannot generate votes because there are not enough cat");
         }
 
         CatUrl firstCat = pickRandomCat();
@@ -25,7 +25,7 @@ public class VoteGenerator {
         );
     }
 
-    private CatUrl pickRandomCatNotEqualsTo(CatUrl firstCat) {
+    private CatUrl pickRandomCatNotEqualsTo(CatUrl firstCat) throws NotGeneratedVoteException {
         CatUrl secondCat;
         int generateTry = 0;
 
@@ -37,9 +37,9 @@ public class VoteGenerator {
         return secondCat;
     }
 
-    private void getAnOtherTryOrFail(int generateTry) {
+    private void getAnOtherTryOrFail(int generateTry) throws NotGeneratedVoteException {
         if(generateTry >= 3) {
-            throw new IllegalStateException("Cannot generate votes with different cat");
+            throw new NotGeneratedVoteException("Cannot generate votes with different cat");
         }
     }
 

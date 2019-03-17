@@ -1,0 +1,10 @@
+{
+  "firstCat": {
+    "id": "1",
+    "url": "http://url1"
+  },
+  "secondCat": {
+    "id": "2",
+    "url": "http://url2"
+  }
+}

@@ -4,4 +4,4 @@ COPY --chown=gradle . /home/gradle/project
 WORKDIR /home/gradle/project
 
 ENTRYPOINT ["gradle", "--console", "plain"]
-CMD ["build", "check", "jar"]
+CMD ["build", "check", "jgivenReport", "jar"]

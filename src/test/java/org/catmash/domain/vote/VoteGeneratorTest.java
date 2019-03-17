@@ -1,5 +1,7 @@
 package org.catmash.domain.vote;
 
+import org.catmash.domain.vote.models.CatMash;
+import org.catmash.domain.vote.models.CatUrl;
 import org.junit.Test;
 import org.mockito.Mockito;
 

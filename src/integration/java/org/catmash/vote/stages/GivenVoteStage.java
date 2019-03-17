@@ -10,7 +10,7 @@ import com.tngtech.jgiven.attachment.Attachment;
 import com.tngtech.jgiven.attachment.MediaType;
 import com.tngtech.jgiven.integration.spring.JGivenStage;
 import org.catmash.configurations.CatmashConfiguration;
-import org.catmash.domain.vote.CatUrl;
+import org.catmash.domain.vote.models.CatUrl;
 import org.catmash.domain.vote.Randomize;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;

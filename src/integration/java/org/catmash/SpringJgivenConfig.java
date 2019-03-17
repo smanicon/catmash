@@ -1,7 +1,7 @@
 package org.catmash;
 
 import com.tngtech.jgiven.integration.spring.EnableJGiven;
-import org.catmash.domain.vote.CatUrl;
+import org.catmash.domain.vote.models.CatUrl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

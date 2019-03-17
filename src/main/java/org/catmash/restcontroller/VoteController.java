@@ -1,6 +1,8 @@
 package org.catmash.restcontroller;
 
 import org.catmash.domain.vote.*;
+import org.catmash.domain.vote.models.CatMash;
+import org.catmash.domain.vote.models.CatUrl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

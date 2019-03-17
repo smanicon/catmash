@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import org.catmash.domain.vote.CatUrl;
+import org.catmash.domain.vote.models.CatUrl;
 import org.catmash.domain.vote.Randomize;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -17,24 +17,24 @@ import java.io.File;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @JGivenStage
-public class ThenVoteStage extends Stage<ThenVoteStage> {
+public class ThenGenerateVoteStage extends Stage<ThenGenerateVoteStage> {
     @ExpectedScenarioState
     CurrentStep currentStep;
 
     @ExpectedScenarioState
     private ResultActions mvcResult;
 
-    public ThenVoteStage the_server_should_return_status_ok() throws Exception {
+    public ThenGenerateVoteStage the_server_should_return_status_ok() throws Exception {
         mvcResult.andExpect(status().isOk());
         return self();
     }
 
-    public ThenVoteStage the_server_should_return_status_error_500() throws Exception {
+    public ThenGenerateVoteStage the_server_should_return_status_error_500() throws Exception {
         mvcResult.andExpect(status().is5xxServerError());
         return self();
     }
 
-    public ThenVoteStage return_the_generated_vote(@Hidden String json) throws Exception {
+    public ThenGenerateVoteStage return_the_generated_vote(@Hidden String json) throws Exception {
         Resource resource = new ClassPathResource(json);
         File jsonFile = resource.getFile();
 

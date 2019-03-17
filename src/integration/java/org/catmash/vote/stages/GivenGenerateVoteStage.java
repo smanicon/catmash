@@ -13,8 +13,6 @@ import org.catmash.configurations.CatmashConfiguration;
 import org.catmash.domain.vote.models.CatUrl;
 import org.catmash.domain.vote.Randomize;
 import org.catmash.persistence.VoteEventStore;
-import org.junit.Rule;
-import org.junit.rules.TemporaryFolder;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -27,7 +25,7 @@ import java.util.List;
 import static org.mockito.ArgumentMatchers.anyInt;
 
 @JGivenStage
-public class GivenVoteStage extends Stage<GivenVoteStage> {
+public class GivenGenerateVoteStage extends Stage<GivenGenerateVoteStage> {
 
     @MockBean
     Randomize randomize;
@@ -46,11 +44,11 @@ public class GivenVoteStage extends Stage<GivenVoteStage> {
     @ExpectedScenarioState
     CurrentStep currentStep;
 
-    public GivenVoteStage an_user_want_to_vote() {
+    public GivenGenerateVoteStage an_user_want_to_vote() {
         return self();
     }
 
-    public GivenVoteStage the_system_has_loaded_the_file(@Quoted String jsonFile) throws IOException {
+    public GivenGenerateVoteStage the_system_has_loaded_the_file(@Quoted String jsonFile) throws IOException {
         Resource jsonCatRessource = new ClassPathResource(jsonFile);
 
         CatmashConfiguration configuration = new CatmashConfiguration();
@@ -63,7 +61,7 @@ public class GivenVoteStage extends Stage<GivenVoteStage> {
         return self();
     }
 
-    public GivenVoteStage the_generated_numbers_are(int firstRandomNumber, Integer...nextRandomNumbers) {
+    public GivenGenerateVoteStage the_generated_numbers_are(int firstRandomNumber, Integer...nextRandomNumbers) {
         BDDMockito.when(randomize.rand(anyInt())).thenReturn(firstRandomNumber, nextRandomNumbers);
 
         return self();

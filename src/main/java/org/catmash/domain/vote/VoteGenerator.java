@@ -13,7 +13,7 @@ public class VoteGenerator {
 
     public CatMash generate() {
         if(hasNotEnoughElement(catUrls.size())) {
-            throw new IllegalStateException("Cannot generate vote because there are not enough cat");
+            throw new IllegalStateException("Cannot generate votes because there are not enough cat");
         }
 
         CatUrl firstCat = pickRandomCat();
@@ -39,7 +39,7 @@ public class VoteGenerator {
 
     private void getAnOtherTryOrFail(int generateTry) {
         if(generateTry >= 3) {
-            throw new IllegalStateException("Cannot generate vote with different cat");
+            throw new IllegalStateException("Cannot generate votes with different cat");
         }
     }
 

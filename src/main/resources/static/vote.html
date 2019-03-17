@@ -51,6 +51,7 @@
             max-height: 300px;
             max-width: 200px;
             margin: auto;
+            cursor: pointer;
         }
 
         #between {
@@ -63,29 +64,51 @@
     <script language="JavaScript">
         $(document).ready(function() {
             $.getJSON("/votes/generate", function(vote) {
-               $("#cat1").attr('src', vote.firstCat.url);
-               $("#cat2").attr('src', vote.secondCat.url);
+                $("#cat1").attr('src', vote.firstCat.url);
+                $("#cat2").attr('src', vote.secondCat.url);
+
+                cat_click = function(id) {
+                    return function() {
+                        data = {
+                            "generatedVote": {
+                                "firstCat": vote.firstCat.id,
+                                "secondCat": vote.firstCat.id
+                             },
+                             "choosed": id
+                        };
+
+                        $.post({
+                            url: "/votes",
+                            data: JSON.stringify(data),
+                            contentType: "application/json",
+                            success: function() {
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+
+                $("#cat1").click(cat_click(vote.firstCat.id));
+                $("#cat2").click(cat_click(vote.firstCat.id));
             });
         })
+
+
     </script>
 </head>
 <body>
-    <header>
+<header>
         <h1>CatMash</h1>
         <h2>Quel chat est le plus mignon ? Cliquez pour voter</h2>
     </header>
     <section>
-        <a href="">
-            <div class="choose">
-                <img id="cat1" src=""/>
-            </div>
-        </a>
+        <div id="choose1" class="choose">
+            <img id="cat1" src=""/>
+        </div>
         <div id="between">OU</div>
-        <a href="">
-            <div class="choose">
-                <img id="cat2" src=""/>
-            </div>
-        </a>
+        <div id="choose2" class="choose">
+            <img id="cat2" src=""/>
+        </div>
     </section>
 </body>
 </html>

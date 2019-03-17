@@ -32,8 +32,51 @@ paths:
                 secondCat:
                   id: "tt"
                   url: "http://24.media.tumblr.com/tumblr_m29a9d62C81r2rj8po1_500.jpg"
+  /votes:
+    post:
+      summary: Permet de voter
+      description: |
+        Pour appeler cette méthode, il faut déjà avoir généré le contenu d'un vote.
+      tags:
+        - votes
+      requestBody:
+        description: Fournis la proposition du vote et le vote de l'utilisateur
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GiveVote'
+            example:
+              generatedVote:
+                firstCat: "MTgwODA3MA"
+                secondCat: "tt"
+              choosed: "tt"
+      responses:
+        '201':
+          description: Le vote à été pris en compte
+
 components:
   schemas:
+    GiveVote:
+      type: object
+      properties:
+        generatedVote:
+          type: object
+          properties:
+            firstCat:
+              type: string
+              description: ID du premier chat
+            secondCat:
+              type: string
+              description: ID du second chat
+          required:
+            - firstCat
+            - secondCat
+        choosed:
+          type: string
+          description: Choix de l'utilisateur. doit correspondre à un des deux ID
+      required:
+        - generateVote
+        - choosed
     GenerateVote:
       type: object
       properties:

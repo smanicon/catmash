@@ -3,6 +3,7 @@ package org.catmash.restcontroller;
 import org.catmash.domain.vote.*;
 import org.catmash.domain.vote.models.CatMash;
 import org.catmash.domain.vote.models.CatUrl;
+import org.catmash.domain.vote.models.CatVote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,8 +31,14 @@ public class VoteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void postVote() {
+    public void postVote(@RequestBody CatVote vote) throws InvalidVoteException {
+        VoteValidator voteValidator = new VoteValidator(System.out::println);
+        voteValidator.validate(vote);
+    }
 
+    @ExceptionHandler(InvalidVoteException.class)
+    public ResponseEntity<Object> invalidVoteExceptionHandler(InvalidVoteException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotGeneratedVoteException.class)

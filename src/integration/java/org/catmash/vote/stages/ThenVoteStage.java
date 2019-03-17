@@ -1,31 +1,43 @@
 package org.catmash.vote.stages;
 
+import com.tngtech.jgiven.CurrentStep;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
+import com.tngtech.jgiven.annotation.Hidden;
+import com.tngtech.jgiven.attachment.Attachment;
 import com.tngtech.jgiven.integration.spring.JGivenStage;
+import org.assertj.core.util.Files;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import java.io.File;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @JGivenStage
 public class ThenVoteStage extends Stage<ThenVoteStage> {
+    @ExpectedScenarioState
+    CurrentStep currentStep;
 
     @ExpectedScenarioState
     private ResultActions mvcResult;
 
-    public ThenVoteStage the_server_should_return_two_cats() throws Exception {
-        mvcResult.andExpect(status().isOk())
-                .andExpect(content().json("{\n" +
-                        "  \"firstCat\": {\n" +
-                        "    \"id\": \"MTgwODA3MA\",\n" +
-                        "    \"url\": \"http://24.media.tumblr.com/tumblr_m82woaL5AD1rro1o5o1_1280.jpg\"\n" +
-                        "  },\n" +
-                        "  \"secondCat\": {\n" +
-                        "    \"id\": \"tt\",\n" +
-                        "    \"url\": \"http://24.media.tumblr.com/tumblr_m29a9d62C81r2rj8po1_500.jpg\"\n" +
-                        "  }\n" +
-                        "}"));
+    public ThenVoteStage the_server_should_return_status_ok() throws Exception {
+        mvcResult.andExpect(status().isOk());
+        return self();
+    }
+
+    public ThenVoteStage return_the_generated_vote(@Hidden String json) throws Exception {
+        Resource resource = new ClassPathResource(json);
+        File jsonFile = resource.getFile();
+
+        mvcResult.andExpect(MockMvcResultMatchers.content().json(Files.contentOf(jsonFile, "utf8")));
+
+        Attachment attachment = Attachment.json(Files.contentOf(jsonFile, "utf8")).withTitle("Result");
+        currentStep.addAttachment(attachment);
+
         return self();
     }
 }

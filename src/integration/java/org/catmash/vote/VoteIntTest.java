@@ -17,8 +17,11 @@ public class VoteIntTest
 
     @Test
     public void should_generate_a_vote() throws Exception {
-        given().an_user_want_to_vote();
+        given().an_user_want_to_vote()
+            .and().the_system_has_loaded_the_file("json/parameter/3_cats.json")
+            .and().the_generated_numbers_are(0, 1);
         when().he_is_asking_for_a_vote();
-        then().the_server_should_return_two_cats();
+        then().the_server_should_return_status_ok()
+                .and().return_the_generated_vote("json/expected/votes/cat_1_and_cat_2.json");
     }
 }

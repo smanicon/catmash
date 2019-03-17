@@ -26,6 +26,7 @@ public class WhenVoteStage extends Stage<WhenVoteStage> {
     @BeforeStage
     public void setup() {
         mvc = MockMvcBuilders.standaloneSetup(voteController).build();
+
     }
 
     public WhenVoteStage he_is_asking_for_a_vote() throws Exception {

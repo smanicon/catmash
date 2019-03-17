@@ -12,7 +12,7 @@ public class VoteValidator {
         this.persistance = persistance;
     }
 
-    public void validate(CatVote vote) throws InvalidVoteException {
+    public void validate(CatVote vote) throws InvalidVoteException, PersistenceException {
         CatId choice = vote.getChoice();
         CatIdTuple tuple = vote.getGeneratedVote();
 

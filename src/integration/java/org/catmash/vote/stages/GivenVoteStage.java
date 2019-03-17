@@ -12,6 +12,9 @@ import com.tngtech.jgiven.integration.spring.JGivenStage;
 import org.catmash.configurations.CatmashConfiguration;
 import org.catmash.domain.vote.models.CatUrl;
 import org.catmash.domain.vote.Randomize;
+import org.catmash.persistence.VoteEventStore;
+import org.junit.Rule;
+import org.junit.rules.TemporaryFolder;
 import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -28,6 +31,9 @@ public class GivenVoteStage extends Stage<GivenVoteStage> {
 
     @MockBean
     Randomize randomize;
+
+    @MockBean
+    VoteEventStore eventStore;
 
     @Autowired
     List<CatUrl> catUrls;

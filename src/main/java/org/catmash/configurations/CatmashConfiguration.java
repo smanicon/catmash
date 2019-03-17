@@ -41,7 +41,7 @@ public class CatmashConfiguration {
 
         mapper.registerModule(module);
 
-        CatUrl[] catUrls = mapper.readValue(catsJson.getFile(), CatUrl[].class);
+        CatUrl[] catUrls = mapper.readValue(catsJson.getInputStream(), CatUrl[].class);
 
         return asList(catUrls);
     }

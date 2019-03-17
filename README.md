@@ -62,5 +62,5 @@ $ ./gradlew bootRun
 La compilation fabrique un fat jar exécutable.
 PPour lancer le projet, il faut le lancer avec la commande suivante :
 ```
-$ java -jar catmash.jar
+$ java -jar catmash.jar --eventStoreFile=xxx
 ```

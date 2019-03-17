@@ -4,6 +4,7 @@ import org.catmash.domain.vote.*;
 import org.catmash.domain.vote.models.CatMash;
 import org.catmash.domain.vote.models.CatUrl;
 import org.catmash.domain.vote.models.CatVote;
+import org.catmash.persistence.VoteEventStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,9 @@ public class VoteController {
     @Autowired
     List<CatUrl> catUrls;
 
+    @Autowired
+    VoteEventStore eventStore;
+
     @GetMapping("/generate")
     public CatMash generateVote() throws NotGeneratedVoteException {
 
@@ -31,9 +35,14 @@ public class VoteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void postVote(@RequestBody CatVote vote) throws InvalidVoteException {
-        VoteValidator voteValidator = new VoteValidator(System.out::println);
+    public void postVote(@RequestBody CatVote vote) throws InvalidVoteException, PersistenceException {
+        VoteValidator voteValidator = new VoteValidator(eventStore::persistVote);
         voteValidator.validate(vote);
+    }
+
+    @ExceptionHandler(PersistenceException.class)
+    public ResponseEntity<Object> persistenceException(PersistenceException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(InvalidVoteException.class)

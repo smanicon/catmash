@@ -1,7 +1,6 @@
 package org.catmash.domain.vote.models;
 
-import lombok.Builder;
-import lombok.Value;
+import lombok.*;
 
 @Value
 @Builder

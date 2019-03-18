@@ -2,16 +2,15 @@ package org.catmash.restcontroller;
 
 import org.catmash.domain.score.BestScore;
 import org.catmash.domain.score.CatScore;
-import org.catmash.domain.vote.models.CatId;
+import org.catmash.domain.vote.PersistenceException;
 import org.catmash.domain.vote.models.CatUrl;
-import org.catmash.domain.vote.models.CatVote;
+import org.catmash.persistence.VoteEventStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -21,10 +20,13 @@ public class CatScoreController {
     @Autowired
     private List<CatUrl> catUrls;
 
+    @Autowired
+    private VoteEventStore eventStore;
+
     @GetMapping
-    public Collection<CatScore> getScore() {
+    public Collection<CatScore> getScore() throws PersistenceException {
         BestScore score = new BestScore(catUrls);
 
-        return score.getScore(Collections.singletonList(CatVote.builder().choice(new CatId("tt")).build()));
+        return score.getScore(eventStore.getVoteEvents());
     }
 }

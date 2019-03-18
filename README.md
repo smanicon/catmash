@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/smanicon/catmash.svg?branch=master)](https://travis-ci.org/smanicon/catmash)
+
 Catmash
 ---
 
@@ -60,5 +62,5 @@ $ ./gradlew bootRun
 La compilation fabrique un fat jar exécutable.
 PPour lancer le projet, il faut le lancer avec la commande suivante :
 ```
-$ java -jar catmash.jar
+$ java -jar catmash.jar --eventStoreFile=xxx
 ```

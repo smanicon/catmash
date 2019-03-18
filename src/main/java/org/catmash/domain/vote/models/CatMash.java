@@ -1,4 +1,4 @@
-package org.catmash.domain.vote;
+package org.catmash.domain.vote.models;
 
 import lombok.Value;
 

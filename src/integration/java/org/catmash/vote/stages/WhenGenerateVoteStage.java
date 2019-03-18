@@ -13,7 +13,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @JGivenStage
-public class WhenVoteStage extends Stage<WhenVoteStage> {
+public class WhenGenerateVoteStage extends Stage<WhenGenerateVoteStage> {
 
     private MockMvc mvc;
 
@@ -29,7 +29,7 @@ public class WhenVoteStage extends Stage<WhenVoteStage> {
 
     }
 
-    public WhenVoteStage he_is_asking_for_a_vote() throws Exception {
+    public WhenGenerateVoteStage he_is_asking_for_a_vote() throws Exception {
         mvcResult = mvc.perform(get("/votes/generate"));
         return self();
     }

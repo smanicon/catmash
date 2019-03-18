@@ -53,9 +53,48 @@ paths:
       responses:
         '201':
           description: Le vote à été pris en compte
+  /scores:
+    get:
+      summary: Retourne les 5 chats les mieux notés
+      description: |
+        Retourne les 5 chats les mieux notés
+      tags:
+        - scores
+      parameters:
+        - name: limit
+          in: query
+          description: nombre maximum de résultat à retourner
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: Retourne la liste des scores par chat
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Scores"
+              example:
+                - cat:
+                    id: "MTgwODA3MA"
+                    url: "http://24.media.tumblr.com/tumblr_m82woaL5AD1rro1o5o1_1280.jpg"
+                  score: 5
+                - cat:
+                    id: "tt"
+                    url: "http://24.media.tumblr.com/tumblr_m29a9d62C81r2rj8po1_500.jpg"
+                  score: 8
+
 
 components:
   schemas:
+    Scores:
+      type: object
+      properties:
+        catid:
+          $ref: "#/components/schemas/CatUrl"
+        score:
+          type: integer
     GiveVote:
       type: object
       properties:
@@ -100,3 +139,5 @@ components:
 tags:
   - name: votes
     description: Permet de voter pour un chat
+  - name: scores
+    description: Permet de visualiser les scores

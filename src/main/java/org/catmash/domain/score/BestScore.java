@@ -11,7 +11,7 @@ import java.util.Map;
 
 import static io.vavr.collection.Stream.ofAll;
 
-class BestScore {
+public class BestScore {
     private List<CatUrl> catUrls;
     private final Map<CatId, CatUrl> urls;
 

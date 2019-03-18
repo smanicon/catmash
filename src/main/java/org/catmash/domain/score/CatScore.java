@@ -4,7 +4,7 @@ import lombok.Value;
 import org.catmash.domain.vote.models.CatUrl;
 
 @Value
-class CatScore {
+public class CatScore {
     CatUrl caturl;
     int score;
 }

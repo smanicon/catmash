@@ -1,8 +1,30 @@
 <html>
     <head>
         <title>Welcome</title>
+        <script src="/jquery-3.3.1.min.js"></script>
+        <script language="JavaScript">
+        $(document).ready(function() {
+            $.getJSON("/scores", function(scores) {
+                scores
+                    .slice(0, 5)
+                    .forEach( function(score) {
+                        $("#display").append(`
+                            <div>
+                                <img src="${score.caturl.url}"/> Son score est ${score.score}
+                            </div>
+                        `);
+                        console.log(score);
+                });
+            });
+        });
+        </script>
     </head>
     <body>
         <h1>Bienvenue</h1>
+        <p>
+            Pour voter, allez sur la <a href="vote.html">page suivante</a>
+        </p>
+        <p>Les 5 premiers gagnatns sont : </p>
+        <div id="display"></div>
     </body>
 </html>
